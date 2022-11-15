@@ -1,21 +1,15 @@
-<!doctype html>
+{% extends 'base.html.twig' %}
 
-<html lang="en">
+{% block title %}Wild Series
+{% endblock %}
 
-	<head>
+{% block body %}
+	<img src="{{ asset('build/images/bouvier.jpeg') }}" alt=""/>
 
-		<meta charset="UTF-8">
 
-		<title>Wild Series</title>
+	<h1>Bienvenue
+		{{ visitor }}
+	</h1>
 
-	</head>
 
-	<body>
-
-		<h1>Bienvenue
-			{{ visitor }}
-		</h1>
-
-	</body>
-
-</html>
+{% endblock %}

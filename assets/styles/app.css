@@ -1,0 +1,61 @@
+body {
+    background-color: grey;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+
+}
+
+.display {
+    border: 1px solid black;
+    background-color: lightgray;
+    position: relative;
+    width: 200px;
+    text-align: center;
+    height: 60px;
+
+}
+
+.display ul {
+    display: none;
+    border: 1px solid black;
+    background-color: lightgray;
+    position: absolute;
+    left: -1px;
+    top: 40px;
+    width: 160px;
+
+}
+
+li {
+    text-align: left;
+
+
+}
+
+.display:hover ul {
+    display: unset;
+    border-top: none;
+
+
+}
+
+
+
+h2 {
+    font-size: 20px;
+}
