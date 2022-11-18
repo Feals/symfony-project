@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProgramRepository;
+use App\Repository\SeasonRepository;
+use App\Entity\Program;
+use App\Entity\Season;
+use App\Entity\Episode;
 
 
 #[Route('/program', name: 'program_')]
@@ -27,15 +31,12 @@ Class ProgramController extends AbstractController
     }
 
     #[Route('/show/{id<^[0-9]+$>}', name: 'show')]
+public function show(int $id, ProgramRepository $programRepository, Program $program):Response
 
-public function show(int $id, ProgramRepository $programRepository):Response
-
-{
-
+{   
     $program = $programRepository->findOneBy(['id' => $id]);
 
-    // same as $program = $programRepository->find($id);
-
+    $seasonsProgam = $program->getSeasons();
 
     if (!$program) {
 
@@ -49,10 +50,31 @@ public function show(int $id, ProgramRepository $programRepository):Response
 
     return $this->render('program/show.html.twig', [
 
-        'program' => $program
+        'program' => $program,
+        'seasonsProgram' => $seasonsProgam
+
 
     ]);
 
 }
+
+    #[Route('/{program}/seasons/{season}',
+    requirements: ['programId' => '\d+', 'id' => '\d+'],
+    methods: ["GET"],
+    name: 'season_show'
+)]
+#[Entity('program', options: ['id' => 'program'])]
+#[Entity('season', options: ['id' => 'season'])]
+
+public function seasonShow(Program $program, Season $season, Episode $episode): Response
+{   $episodesSeasonProgam = $season->getEpisodes();
+
+    return $this->render('program/season_show.html.twig', [
+        'program' => $program,
+        'season' => $season,
+        'episodes' => $episodesSeasonProgam
+    ]);
 }
+}
+
 

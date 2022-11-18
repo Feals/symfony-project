@@ -46,7 +46,7 @@ public function show(string $categoryName, CategoryRepository $categoryRepositor
     }     
     
     $categoryId = $category[0]->getId();
-    $programs = $programRepository->findBy(['category' => $categoryId], ['id' => 'DESC'], $limit = 3 );
+    $programs = $programRepository->findBy(['category' => $categoryId], ['id' => 'DESC'], 3 );
     
     // same as $program = $programRepository->find($id);
     $category = $category[0];
