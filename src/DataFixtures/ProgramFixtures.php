@@ -35,6 +35,12 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             "category" => "category_Action"
         ],
         [
+            "title" => "Le Destin des Wings",
+            "synopsis" => "Avec des Fées",
+            "poster" => "",
+            "category" => "category_Action"
+        ],
+        [
             "title" => "NoGame NoLife",
             "synopsis" => "Un monde où tous ce règle par le jeu",
             "poster" => "",
@@ -42,15 +48,15 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         ]
     ];
         public function load(ObjectManager $manager): void
-    { foreach (self::PROGRAMS as $index => $programData) {
+    { foreach (self::PROGRAMS as $programData) {
         $program = new Program();
         $program->setTitle($programData["title"]);
         $program->setSynopsis($programData["synopsis"]);
         $program->setPoster($programData["poster"]);
         $program->setCategory($this->getReference($programData["category"]));
-        $this->addReference('program_' . $index, $program);
-
+        $this->addReference('program_' . $programData["title"], $program);
         $manager->persist($program);
+        
     }
     $manager->flush();
 

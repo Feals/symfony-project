@@ -12,6 +12,7 @@ use App\Entity\Season;
 use App\Entity\Episode;
 use App\Form\ProgramType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 
 #[Route('/program', name: 'program_')]
@@ -34,11 +35,13 @@ Class ProgramController extends AbstractController
 
     #[Route('/new', name: 'new')]
 
-    public function new(Request $request, ProgramRepository $programRepository): Response
+    public function new(Request $request, ProgramRepository $programRepository, SluggerInterface $slugger): Response
 
     {
 
         $program = new Program();
+        $slug = $slugger->slug($program->getTitle());
+        $program->setSlug($slug);
 
 
         // Create the form, linked with $category
