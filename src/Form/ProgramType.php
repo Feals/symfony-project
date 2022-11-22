@@ -25,6 +25,12 @@ class ProgramType extends AbstractType
             ->add('synopsis', TextType::class)
             ->add('poster', UrlType::class)
             ->add('category', null, ['choice_label' => 'name'] )
+            ->add('actors', EntityType::class, [
+                'class' => Actor::class,
+                'choice_label' => 'title',
+                'multiple' => true,
+                'expanded' => false,
+                'by_reference' => false])
         ;
     }
 

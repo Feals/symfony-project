@@ -40,11 +40,7 @@ Class ProgramController extends AbstractController
     {
 
         $program = new Program();
-        $slug = $slugger->slug($program->getTitle());
-        $program->setSlug($slug);
-
-
-        // Create the form, linked with $category
+             // Create the form, linked with $category
 
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);

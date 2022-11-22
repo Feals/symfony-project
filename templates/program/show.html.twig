@@ -19,7 +19,17 @@
 				{{ program.category.name }}</p>
 
 		</div>
-
+		<div>
+			<strong>Acteurs :</strong>
+			<ul>
+				{% for actor in program.actors %}
+					<li>
+						<p>
+							{{actor.name}}</p>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
 		<div>
 			<ul>
 				{% for season in seasonsProgram %}
